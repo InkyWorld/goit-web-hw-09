@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "goit-web-hw-09"
+version = "0.1.0"
+description = ""
+authors = ["ink404dot <94466285+ink404dot@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+scrapy = "^2.12.0"
+mongoengine = "^0.29.1"
+redis = "^5.2.1"
+redis-lru = "^0.1.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

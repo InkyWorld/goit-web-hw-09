@@ -1,12 +1,15 @@
 import json
+
 import redis
 from redis_lru import RedisLRU
+
+import logging
+from scrapy.crawler import CrawlerProcess
+from scrapy.utils.project import get_project_settings
+
+from scrapy_project.scrapy_project.spiders.data_quotes import DataQuotesSpider
 from models import Author, Quote
 
-from mongoengine.queryset import QuerySet
-from mongoengine.errors import NotUniqueError, DoesNotExist
-
-from scrapy_project.scrapy_project.spiders.data_quotes import run_spider
 import connection
 
 # Підключення до Redis
@@ -37,6 +40,15 @@ def find_by_tags(tags: list[str]) -> set[str]:
     for tag in tags:
         quotes.extend(Quote.objects(tags__iregex=tag))
     return set(q.quote for q in quotes)
+
+
+def run_spider():
+    logging.getLogger("scrapy").propagate = False
+
+    # Run the spider
+    process = CrawlerProcess(get_project_settings())
+    process.crawl(DataQuotesSpider)
+    process.start()
 
 
 def main():

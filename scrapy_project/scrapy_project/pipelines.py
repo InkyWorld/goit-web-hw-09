@@ -50,6 +50,8 @@ class MongoPipeline:
                     spider.logger.error(f"Failed to save author: {e}")
 
         if isinstance(item, QuoteItem):
+            if item.get("author") == "Alexandre Dumas fils":
+                item['author'] = 'Alexandre Dumas-fils'
             author_obj = Author.objects.get(fullname=item.get("author"))
             if not Quote.objects(
                     author=author_obj,

@@ -92,8 +92,5 @@ ITEM_PIPELINES = {
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
 
-import logging
-logging.disable(logging.CRITICAL)
-LOG_LEVEL = 'CRITICAL'
-
-LOG_ENABLED = False
+LOG_ENABLED = False  # Повністю вимикає Scrapy логи
+LOG_LEVEL = 'CRITICAL'  # Додаємо гарантію для рівня логів
